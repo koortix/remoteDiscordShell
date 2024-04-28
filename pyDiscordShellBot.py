@@ -10,6 +10,7 @@ import requests
 import subprocess
 import tempfile
 import time
+from discord import Intents
 
 
 __author__ = "EnriqueMoran"
@@ -28,7 +29,11 @@ LOG_LIMIT = None              # Max number of lines to register in log
 ENABLE_ROOT = False
 FORBIDDEN_COMMANDS = []       # Non working/disabled commands
 
-CLIENT = discord.Client()     # Discord client
+# intent=discord.Intents.all() - This will fix the issue of receiving blank messages from discord bot 
+# Also, make sure to enable the "MESSAGE CONTENT INTENT" functionality from discord developer portal for bot . refer - https://ask.replit.com/t/message-content-intent-is-missing/89768/2
+
+CLIENT = discord.Client(intent=discord.Intents.all())     # Discord client
+
 IN_GUILD = False              # Is bot running in configured server?
 LOG_LINES = 0                 # Current lines of log.txt
 COMMANDS_QUEUE = {}           # Used for updating and upgrading the system
